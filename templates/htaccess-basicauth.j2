@@ -1,0 +1,16 @@
+<Files "*">
+   Order deny,allow
+   Deny from all
+   AuthType Basic
+   AuthName "Kirjaudu"
+   AuthUserFile {{site_dir}}/.htpasswd
+   Require valid-user
+   Satisfy Any
+</Files>
+
+<Files www/robots.txt>
+     Satisfy Any
+     Order deny,allow
+     Allow from all
+     require None
+ </Files>

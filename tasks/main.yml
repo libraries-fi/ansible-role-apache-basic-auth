@@ -1,0 +1,13 @@
+---
+
+- name: Install python-passlib
+  apt: state=present pkg=python-passlib
+
+- name: Install htaccess with basic auth
+  template: src=htaccess-basicauth.j2 dest={{site_dir}}/.htaccess mode=0640 owner=root group=www-data
+
+- name: Add user to htpasswd
+  htpasswd: path={{site_dir}}/.htpasswd name={{user}} password={{password}} mode=0640 owner=root group=www-data state=present
+
+- name: Install robots.txt
+  copy: src=robots.txt dest={{site_dir}}/www mode=0644 owner=root group=www-data
